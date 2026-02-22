@@ -1,9 +1,8 @@
 class Myprs < Formula
   desc "Terminal UI for viewing your authored Bitbucket pull requests"
   homepage "https://github.com/shaunwen/myprs"
-  url "https://github.com/shaunwen/myprs/archive/refs/tags/v0.1.1.tar.gz"
-  version "0.1.1"
-  sha256 "2ef4a1b297afa17e5425f6319e82b11952077733fe7a687573e92a5f5c871237"
+  url "https://github.com/shaunwen/myprs/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "b7410739e0c755b38b3a07e9d8b70134da28a7c266328116eb740142cdfcb06a"
   license "MIT"
 
   on_macos do
@@ -17,8 +16,8 @@ class Myprs < Formula
   end
 
   resource "myprs-arm64-binary" do
-    url "https://github.com/shaunwen/myprs/releases/download/v0.1.1/myprs-v0.1.1-aarch64-apple-darwin.tar.gz"
-    sha256 "2a19f61d1d860ab14227f76be26c9d9a426e720e66e9d8cd61ce2c6993fcc5df"
+    url "https://github.com/shaunwen/myprs/releases/download/v0.1.2/myprs-v0.1.2-aarch64-apple-darwin.tar.gz"
+    sha256 "3c661a3b9032daa3206dd47592f3e5545e8f51ec59267a7919e1e4df8fd4466c"
   end
 
   def install
