@@ -22,4 +22,7 @@ To release a new version:
 
 1. Tag and push a new `myprs` release (for example `v0.1.1`).
 2. Update `Formula/myprs.rb` with the new `url` and `sha256`.
-3. Commit and push to this tap repo.
+3. Open a pull request with the formula change.
+4. Wait for `brew test-bot` to pass and upload bottle artifacts.
+5. Add the `pr-pull` label to the PR to trigger bottle publishing and bottle block updates.
+6. After the workflow completes, users can install prebuilt bottles with `brew install myprs` on supported platforms.
