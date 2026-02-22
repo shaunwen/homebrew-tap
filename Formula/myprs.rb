@@ -2,6 +2,7 @@ class Myprs < Formula
   desc "Terminal UI for viewing your authored Bitbucket pull requests"
   homepage "https://github.com/shaunwen/myprs"
   url "https://github.com/shaunwen/myprs/archive/refs/tags/v0.1.1.tar.gz"
+  version "0.1.1"
   sha256 "2ef4a1b297afa17e5425f6319e82b11952077733fe7a687573e92a5f5c871237"
   license "MIT"
 
