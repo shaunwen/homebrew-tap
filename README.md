@@ -2,7 +2,10 @@
 
 Homebrew tap for Shaun Wen formulas.
 
-This repository can host multiple programs under `Formula/`. `myprs` is the first formula.
+This repository can host multiple programs under `Formula/`:
+
+- `myprs`: terminal UI for viewing your authored Bitbucket pull requests
+- `backsync`: one-way mirror backup of a source folder to a target folder
 
 ## Install
 
