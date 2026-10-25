@@ -7,22 +7,20 @@ class Readr < Formula
 
   depends_on :macos
 
-  on_intel do
-    depends_on "rust" => :build
-  end
-
-  resource "readr-arm64-binary" do
-    url "https://github.com/shaunwen/readr/releases/download/v0.1.0/readr-v0.1.0-aarch64-apple-darwin.tar.gz"
-    sha256 "77fa4bb90888f85c4a4649db574bd33ec56f46d0f38c4a73c1293c9a300982af"
+  resource "binary" do
+    on_arm do
+      url "https://github.com/shaunwen/readr/releases/download/v0.1.0/readr-v0.1.0-aarch64-apple-darwin.tar.gz"
+      sha256 "77fa4bb90888f85c4a4649db574bd33ec56f46d0f38c4a73c1293c9a300982af"
+    end
+    on_intel do
+      url "https://github.com/shaunwen/readr/releases/download/v0.1.0/readr-v0.1.0-x86_64-apple-darwin.tar.gz"
+      sha256 "88c7053840a3a8bda4e07e8bd0f86e08345715fdc8c6477e12a0c0dbf0462f25"
+    end
   end
 
   def install
-    if Hardware::CPU.arm?
-      resource("readr-arm64-binary").stage do
-        bin.install "readr"
-      end
-    else
-      system "cargo", "install", *std_cargo_args(path: "crates/readr")
+    resource("binary").stage do
+      bin.install "readr"
     end
   end
 

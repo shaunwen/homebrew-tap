@@ -6,7 +6,7 @@ This repository can host multiple programs under `Formula/`:
 
 - `myprs`: terminal UI for viewing your authored Bitbucket pull requests
 - `backsync`: one-way mirror backup of a source folder to a target folder
-- `readr`: track daily reading across bookokrat, Preview and Apple Books (macOS; prebuilt on Apple Silicon, built from source on Intel)
+- `readr`: track daily reading across bookokrat, Preview and Apple Books (macOS; prebuilt for Apple Silicon and Intel)
 
 ## Install
 
