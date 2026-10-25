@@ -1,6 +1,6 @@
 # shaunwen's Homebrew Tap
 
-Homebrew tap for my terminal tools.
+Homebrew tap for my tools.
 
 ## Install
 
