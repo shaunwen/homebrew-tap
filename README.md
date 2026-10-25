@@ -1,51 +1,58 @@
-# homebrew-tap
+# shaunwen's Homebrew Tap
 
-Homebrew tap for Shaun Wen formulas.
-
-This repository can host multiple programs under `Formula/`:
-
-- `myprs`: terminal UI for viewing your authored Bitbucket pull requests
-- `backsync`: one-way mirror backup of a source folder to a target folder
-- `readr`: track daily reading across bookokrat, Preview and Apple Books (macOS; prebuilt for Apple Silicon and Intel)
+Homebrew tap for my terminal tools.
 
 ## Install
 
 ```bash
-brew install shaunwen/tap/<formula>
+brew tap shaunwen/tap
 ```
 
-Example:
+## Install Packages
 
 ```bash
-brew install shaunwen/tap/myprs
+brew install shaunwen/tap/<name>
 ```
 
-## Upgrade
+## Packages
+
+### Formulae
+
+- `backsync` - One-way mirror backup of a source folder to a target folder
+- `myprs` - Terminal UI for viewing your authored Bitbucket pull requests
+- `readr` - Track daily reading across bookokrat, Preview and Apple Books (macOS only)
+
+## Update / Uninstall
 
 ```bash
 brew update
-brew upgrade shaunwen/tap/<formula>
+brew upgrade
+
+brew uninstall <name>
 ```
 
-## Maintainers
+## Notes
 
-To add a new program:
+- Run `brew info shaunwen/tap/<name>` for per-tool caveats (permissions, setup steps, etc.).
+- `readr` needs Accessibility and Full Disk Access; after `brew upgrade readr`, run `readr daemon install` again to restart its tracker.
 
-1. Add a new formula file under `Formula/` (for example `Formula/mytool.rb`).
-2. Test locally:
+## Manual Cleanup
+
+Homebrew formulae don't remove user data. Delete these to start over:
+
+- `backsync`: `~/.config/backsync/`
+- `myprs`: `~/.config/myprs/`
+- `readr`: `~/.config/readr/`, `~/.local/share/readr/`, `~/Library/Logs/readr/`, the Keychain item `readr-smtp`, and `readr daemon uninstall` before uninstalling to remove its launchd agent
+
+## Updating Formulae
+
+1. Tag and publish a release in the tool's repository, with prebuilt binaries where the formula expects them.
+2. Update the `url` and `sha256` values in `Formula/<name>.rb`, then test locally:
    ```bash
-   brew install --build-from-source ./Formula/mytool.rb
-   brew test mytool
+   brew install --build-from-source ./Formula/<name>.rb
+   brew test <name>
+   brew style shaunwen/tap/<name>
+   brew audit --strict --online shaunwen/tap/<name>
    ```
-3. Open a pull request and wait for `brew test-bot` to pass.
-
-To release a new version of `myprs`:
-
-1. Tag and push a new `myprs` release (for example `v0.1.1`).
-2. Update `Formula/myprs.rb` with the new `url` and `sha256`.
-   - Update source tarball `url` + `sha256` (`archive/refs/tags/vX.Y.Z.tar.gz`).
-   - Update arm64 binary resource `url` + `sha256` (`releases/download/vX.Y.Z/...aarch64-apple-darwin.tar.gz`).
-3. Open a pull request with the formula change.
-4. Wait for `brew test-bot` to pass and upload bottle artifacts.
-5. Add the `pr-pull` label to the PR to trigger bottle publishing and bottle block updates.
-6. After the workflow completes, users can install prebuilt bottles with `brew install shaunwen/tap/myprs` on supported platforms.
+3. Open a pull request and wait for `brew test-bot` to pass on Linux, Intel macOS and Apple Silicon macOS.
+4. For formulae that build from source (such as `backsync`), add the `pr-pull` label instead of merging: the `brew pr-pull` workflow uploads the bottles test-bot built to a `<name>-<version>` release in this tap, adds their checksums to the formula and pushes to `main`. Formulae that install prebuilt binaries (such as `readr`) can be merged directly.
